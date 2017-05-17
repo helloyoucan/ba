@@ -1,11 +1,11 @@
 <template>
 	<div class="main" :class="{hideMenu:isHideKMenu}">
-		<v-header></v-header>
-		<v-sidebar @hideMenu="hideMenu" class="layout-left diyscrollbar" @SetBreadcrumb="SetBreadcrumb">
+		<v-header @hideMenu="hideMenu"></v-header>
+		<v-sidebar class="layout-left diyscrollbar" @SetBreadcrumb="SetBreadcrumb">
 		</v-sidebar>
 		<div class="layout-right">
 			<el-breadcrumb separator="/">
-				<el-breadcrumb-item v-for="title in breadcrumb">{{title}}</el-breadcrumb-item>
+				<el-breadcrumb-item v-for="title in breadcrumb" v-bind:key="title">{{title}}</el-breadcrumb-item>
 			</el-breadcrumb>
 			<router-view class="content diyscrollbar"></router-view>
 		</div>
@@ -32,7 +32,7 @@
 				this.breadcrumb = text_arr;
 			},
 			hideMenu() {
-				this.isHideKMenu = true;
+				this.isHideKMenu = !this.isHideKMenu;
 			}
 		}
 	}
@@ -50,14 +50,15 @@
 		height: -moz-calc(100% - 60px);
 		height: -webkit-calc(100% - 60px);
 		height: calc(100% - 60px);
-		transition: width ease .5s;
+		transition: margin-left ease .5s;
 	}
 
 	.layout-right {
 		overflow: auto;
 		/*background-color: #fff;*/
-		margin: 15px;
-		margin-left: 215px;
+		padding: 15px;
+		margin-left: 200px;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, .2) inset;
 		height: -moz-calc(100% - 90px);
 		height: -webkit-calc(100% - 90px);
 		height: calc(100% - 90px);
@@ -65,12 +66,11 @@
 	}
 
 	.hideMenu .layout-left {
-		width: 0;
-		opacity: 0;
+		margin-left: -200px;
 	}
 
 	.hideMenu .layout-right {
-		margin-left: 15px;
+		margin-left: 0px;
 	}
 
 	.content {
@@ -80,6 +80,7 @@
 		height: -webkit-calc(100% - 18px);
 		height: calc(100% - 18px);
 		overflow: auto;
+		box-shadow: 0 5px 6px rgba(0, 0, 0, .2);
 	}
 
 	.diyscrollbar::-webkit-scrollbar-track {

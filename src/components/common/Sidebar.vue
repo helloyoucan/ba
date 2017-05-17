@@ -16,9 +16,6 @@
 		<el-menu-item index="content5">
 			<i class="el-icon-star-on"></i>一级菜单4
 		</el-menu-item>
-		<li class="hideMenuAction" @click="hideMenuAction">
-			<i class="el-icon-star-on"></i>一级菜单4
-		</li>
 	</el-menu>
 </template>
 
@@ -44,12 +41,8 @@
 				for(var i = 0, l = keyPath.length; i < l; i++) {
 					text_arr.push(key_arr[keyPath[i]]);
 				}
-				console.log(text_arr)
 				this.$emit('SetBreadcrumb', text_arr)
 			},
-			hideMenuAction() {
-				this.$emit('hideMenu');
-			}
 		}
 	}
 </script>
