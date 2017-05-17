@@ -19,7 +19,10 @@
 					</el-form-item>
 					<el-form-item prop="captcha">
 						<el-input class="captcha-input" type="text" placeholder="验证码" v-model="formData.captcha" auto-complete="off"></el-input>
-						<img title="点击切换验证码" @click="changeCaptchaImg()" class="captcha-img" alt="验证码" :src="formData.captchaImgUrl" />
+						<el-tooltip class="item" effect="dark" content="点击更换验证码" placement="top">
+							<img @click="changeCaptchaImg()" class="captcha-img" alt="验证码" :src="formData.captchaImgUrl" />
+						</el-tooltip>
+
 					</el-form-item>
 					<el-form-item>
 						<el-button class="login-btn" type="primary" @click="submitForm('formData')" :loading="isLoading">登录</el-button>
@@ -67,7 +70,7 @@
 				formData: {
 					password: '',
 					useName: '',
-					captcha:'',
+					captcha: '',
 					captchaImgUrl: '../../static/img/testCaptcha.png', //验证码
 				},
 				loginRules: {
